@@ -14,24 +14,6 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {Place.class},version = 1, exportSchema = false)
 public abstract class PlacesRoomDB extends RoomDatabase {
+    public abstract PlacesDao placeDao();
 
-    public abstract PlacesDao wordDao();
-
-    private static volatile PlacesRoomDB INSTANCE;
-    private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-
-    static PlacesRoomDB getDatabase(final Context context) {
-        if (INSTANCE == null) {
-            synchronized (PlacesRoomDB.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PlacesRoomDB.class, "word_database")
-                            .build();
-                }
-            }
-        }
-        return INSTANCE;
-    }
 }

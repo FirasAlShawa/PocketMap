@@ -7,6 +7,7 @@ import androidx.room.Query;
 
 import com.appsup.pocket.map.roomdb.entity.Place;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
