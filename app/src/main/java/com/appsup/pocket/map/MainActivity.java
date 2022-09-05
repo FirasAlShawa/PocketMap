@@ -6,11 +6,15 @@ import androidx.room.Room;
 import com.appsup.pocket.map.AddNewPlace;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.appsup.pocket.map.adapter.PlaceAdapter;
+import com.appsup.pocket.map.adapter.SwipeHelper;
 import com.appsup.pocket.map.roomdb.dao.PlacesDao;
 import com.appsup.pocket.map.roomdb.db.PlacesRoomDB;
 import com.appsup.pocket.map.roomdb.entity.Place;
@@ -41,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         initDB();
         initRecyclerView();
     }
@@ -74,8 +84,56 @@ public class MainActivity extends AppCompatActivity {
      * 3- set the adapter to the RecyclerView
      */
     public void initRecyclerView(){
+        placesRC = findViewById(R.id.places_rc);
         List<Place> places = getAll();
-        placeAdapter = new PlaceAdapter(places,this);
+        placeAdapter = new PlaceAdapter(places, this);
+        SwipeHelper swipeHelper = new SwipeHelper(getApplicationContext(), placesRC) {
+            @Override
+            public void instantiateUnderlayButton(RecyclerView.ViewHolder viewHolder, List<UnderlayButton> underlayButtons) {
+                underlayButtons.add(new SwipeHelper.UnderlayButton(
+                        "Delete",
+                        0,
+                        Color.parseColor("#EB1D36"),
+                        new SwipeHelper.UnderlayButtonClickListener() {
+                            @Override
+                            public void onClick(int pos) {
+                                deletePlace(places.get(pos));
+                                places.remove(pos);
+                                placeAdapter.notifyItemRemoved(pos);
+                                placeAdapter.notifyItemRangeChanged(pos, places.size());
+                            }
+                        }
+                ));
+
+                underlayButtons.add(new SwipeHelper.UnderlayButton(
+                        "View",
+                        0,
+                        Color.parseColor("#A2B5BB"),
+                        new SwipeHelper.UnderlayButtonClickListener() {
+                            @Override
+                            public void onClick(int pos) {
+                                Toast.makeText(MainActivity.this, "Hi", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                ));
+                underlayButtons.add(new SwipeHelper.UnderlayButton(
+                        "Nav",
+                        0,
+                        Color.parseColor("#CFD2CF"),
+                        new SwipeHelper.UnderlayButtonClickListener() {
+                            @Override
+                            public void onClick(int pos) {
+                                Place place = places.get(pos);
+                                Uri content_url = Uri.parse("petalmaps://navigation?daddr="+place.getLatitude()+","+place.getLongitude());
+                                Intent intent = new Intent(Intent.ACTION_VIEW, content_url);
+                                if (intent.resolveActivity(getPackageManager()) != null) {
+                                    startActivity(intent);
+                                }
+                            }
+                        }
+                ));
+            }
+        };
         placesRC.setAdapter(placeAdapter);
     }
 
@@ -96,6 +154,10 @@ public class MainActivity extends AppCompatActivity {
     public List<Place> getAll() {
         List<Place> places = placeDao.getAllPlaces();
         return places;
+    }
+
+    public void deletePlace(Place place){
+        placeDao.deletePlace(place);
     }
 
 }

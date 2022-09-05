@@ -1,5 +1,6 @@
 package com.appsup.pocket.map.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +36,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.Viewholder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull Viewholder holder, @SuppressLint("RecyclerView") int position) {
         final Place place = places.get(position);
         holder.place_tv.setText(place.getTitle());
     }
@@ -56,5 +57,12 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.Viewholder> 
             place_tv = itemView.findViewById(R.id.place_tv);
         }
     }
+
+    void deleteItem(int position) {
+        places.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, places.size());
+    }
+
 
 }

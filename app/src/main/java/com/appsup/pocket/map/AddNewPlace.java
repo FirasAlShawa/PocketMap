@@ -21,6 +21,8 @@ import com.huawei.hms.maps.OnMapReadyCallback;
 import com.huawei.hms.maps.SupportMapFragment;
 import com.huawei.hms.maps.model.LatLng;
 
+import java.text.DecimalFormat;
+
 public class AddNewPlace extends AppCompatActivity implements OnMapReadyCallback , HuaweiMap.OnMapClickListener {
 
     HuaweiMap hMap;
@@ -98,8 +100,8 @@ public class AddNewPlace extends AppCompatActivity implements OnMapReadyCallback
         TextView longitudeTv = view.findViewById(R.id.longitudeTv);
         EditText placeEt = view.findViewById(R.id.placeEt);
 
-        String lat = latLng.latitude + "";
-        String lng = latLng.longitude + "";
+        String lat = Double.parseDouble(new DecimalFormat("##.######").format(latLng.latitude))+ "";
+        String lng = Double.parseDouble(new DecimalFormat("##.######").format(latLng.longitude))+ "";
 
         latitudeTv.setText(lat);
         longitudeTv.setText(lng);
@@ -109,6 +111,7 @@ public class AddNewPlace extends AppCompatActivity implements OnMapReadyCallback
         alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 insertPlace(placeEt.getText().toString(),lat,lng);
+                finish();
             }
         });
 

@@ -26,5 +26,9 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:src="@drawable/ic_baseline_add_circle_24"
+        app:backgroundTint="@color/fab"
+        app:borderWidth="0dp"
+        app:elevation="6dp"
+        app:fabSize="normal"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

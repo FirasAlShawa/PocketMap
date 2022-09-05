@@ -1,6 +1,7 @@
 package com.appsup.pocket.map.roomdb.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -21,4 +22,7 @@ public interface PlacesDao {
 
     @Query("SELECT * FROM Places where id = :id")
     Place getPlace(int id);
+
+    @Delete
+    Void deletePlace(Place place);
 }
