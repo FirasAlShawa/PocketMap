@@ -16,6 +16,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            storeFile file('D:\\Portfolio\\PocketMap\\app\\android.jks')
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+            v2SigningEnabled true
+        }
+        release {
+            storeFile file("android.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+            v2SigningEnabled true
+        }
+    }
 
     buildTypes {
         release {

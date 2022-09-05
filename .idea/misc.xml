@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Portfolio/PocketMap/app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.2921875" />
-        <entry key="..\:/Portfolio/PocketMap/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Portfolio/PocketMap/app/src/main/res/layout/activity_add_new_place.xml" value="0.2760416666666667" />
+        <entry key="..\:/Portfolio/PocketMap/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Portfolio/PocketMap/app/src/main/res/layout/place_add_dialog.xml" value="0.1" />
         <entry key="..\:/Portfolio/PocketMap/app/src/main/res/layout/place_item_layout.xml" value="0.264" />
       </map>
     </option>

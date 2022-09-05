@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <EditText
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/placeEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Place Title"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_margin="16dp"
+       >
+       <TextView
+           android:id="@+id/latitudeTv"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="lat"
+       android:layout_weight="1"/>
+       <TextView
+           android:id="@+id/longitudeTv"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="lng"
+           android:layout_weight="1"/>
+   </LinearLayout>
+</LinearLayout>

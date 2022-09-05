@@ -12,7 +12,7 @@ import com.appsup.pocket.map.roomdb.entity.Place;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Place.class},version = 1, exportSchema = false)
+@Database(entities = {Place.class},version = 2, exportSchema = false)
 public abstract class PlacesRoomDB extends RoomDatabase {
     public abstract PlacesDao placeDao();
 

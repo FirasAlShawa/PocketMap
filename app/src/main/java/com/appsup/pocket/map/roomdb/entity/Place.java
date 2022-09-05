@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Places")
 public class Place {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo
@@ -20,15 +20,13 @@ public class Place {
     @ColumnInfo
     private String longitude;
 
-    public Place(@NonNull int id,@NonNull String title,@NonNull String latitude,@NonNull String longitude) {
-        this.id = id;
+    public Place(@NonNull String title,@NonNull String latitude,@NonNull String longitude) {
         this.title = title;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
     public Place() {
-        this.id = 0;
         this.title = "test";
         this.latitude = "0.0";
         this.longitude = "0.0";
